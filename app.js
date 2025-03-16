@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const helmet = require('helmet');
+const serverless = require('serverless-http');
 const cors = require('cors');
 
 dotenv.config();
@@ -22,3 +23,4 @@ app.use('/api/categories', require('./routes/categoryRoutes'));
 app.use('/api/cuisines', require('./routes/cuisineRoutes'));
 
 module.exports = app;
+module.exports.handler = serverless(app);
